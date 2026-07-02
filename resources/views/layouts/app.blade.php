@@ -1,82 +1,80 @@
 <!DOCTYPE html>
 <html lang="id">
 
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>{{ $setting->app_name }} | {{ $title }}</title>
-    <meta content="{{ $setting->description }}" name="description">
-    <meta content="{{ $setting->keywords }}" name="keywords">
-    <meta content="Muh Rafli" name="author">
+<title>{{ $setting->app_name }} | {{ $title }}</title>
+<meta content="{{ $setting->description }}" name="description">
+<meta content="{{ $setting->keywords }}" name="keywords">
+<meta content="Nur Aulia Safitri Ashari" name="author">
 
-    {{-- {{ asset('niceadmin') }} --}}
+{{-- {{ asset('niceadmin') }} --}}
 
-    <!-- Favicons -->
-    <link href="{{ $setting->logo ? asset('storage/' . $setting->logo) : asset('niceadmin/img/logo.png') }}"
-        rel="icon">
-    <link href="{{ $setting->logo ? asset('storage/' . $setting->logo) : asset('niceadmin/img/logo.png') }}"
-        rel="apple-touch-icon">
+<!-- Favicons -->
+<link href="{{ $setting->logo ? asset('storage/' . $setting->logo) : asset('niceadmin/img/logo.png') }}" rel="icon">
+<link href="{{ $setting->logo ? asset('storage/' . $setting->logo) : asset('niceadmin/img/logo.png') }}"
+    rel="apple-touch-icon">
 
-    <!-- Google Fonts -->
-    <link href="https://fonts.gstatic.com" rel="preconnect">
-    <link
-        href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
-        rel="stylesheet">
+<!-- Google Fonts -->
+<link href="https://fonts.gstatic.com" rel="preconnect">
+<link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('niceadmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('niceadmin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('niceadmin/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('niceadmin/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+<!-- Vendor CSS Files -->
+<link href="{{ asset('niceadmin/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+<link href="{{ asset('niceadmin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+<link href="{{ asset('niceadmin/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+<link href="{{ asset('niceadmin/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
 
-    <!-- add on -->
-    <link rel="stylesheet" href="{{ asset('niceadmin/vendor/dataTables/css/dataTables.bootstrap5.css') }}">
-    <link href="{{ asset('niceadmin/vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('niceadmin/vendor/select2/css/select2-bootstrap-5-theme.min.css') }}" rel="stylesheet" />
+<!-- add on -->
+<link rel="stylesheet" href="{{ asset('niceadmin/vendor/dataTables/css/dataTables.bootstrap5.css') }}">
+<link href="{{ asset('niceadmin/vendor/select2/css/select2.min.css') }}" rel="stylesheet" />
+<link href="{{ asset('niceadmin/vendor/select2/css/select2-bootstrap-5-theme.min.css') }}" rel="stylesheet" />
 
-    <!-- Template Main CSS File -->
-    <link href="{{ asset('niceadmin/css/style.css') }}" rel="stylesheet">
+<!-- Template Main CSS File -->
+<link href="{{ asset('niceadmin/css/style.css') }}" rel="stylesheet">
 
-    <style>
-        label.required::after {
-            content: " *";
-            color: red;
-            font-weight: bold;
-        }
+<style>
+    label.required::after {
+        content: " *";
+        color: red;
+        font-weight: bold;
+    }
 
-        table.dataTable thead th {
-            background-color: #0d6efd !important;
-            color: white !important;
-            text-align: center !important;
-        }
+    table.dataTable thead th {
+        background-color: #0d6efd !important;
+        color: white !important;
+        text-align: center !important;
+    }
 
-        #data-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
+    #data-table td {
+        text-align: center;
+        vertical-align: middle;
+    }
 
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            flex-direction: column;
-        }
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
 
-        #main {
-            flex: 1;
-        }
+    #main {
+        flex: 1;
+    }
 
-        .footer {
-            text-align: center !important;
-            padding: 15px 0;
-            background: #fff;
-        }
-    </style>
+    .footer {
+        text-align: center !important;
+        padding: 15px 0;
+        background: #fff;
+    }
+</style>
 
-    <!-- =======================================================
+<!-- =======================================================
   * Template Name: NiceAdmin
   * Template URL: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/
   * Updated: Apr 20 2024 with Bootstrap v5.3.3
@@ -106,14 +104,17 @@
 
                     <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                         data-bs-toggle="dropdown">
-                        <img src="{{ asset('niceadmin/img/profile-img.jpg') }}" alt="Profile" class="rounded-circle">
-                        <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+                        <img src="{{ Auth::user()->avatar ? asset('storage/' . Auth::user()->avatar) : asset('niceadmin/img/noprofil.png') }}"
+                            alt="Profile" class="rounded-circle">
+                        <span class="d-none d-md-block dropdown-toggle ps-2">
+                            {{ Auth::user()->name }}
+                        </span>
                     </a><!-- End Profile Iamge Icon -->
 
                     <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                         <li class="dropdown-header">
-                            <h6>Kevin Anderson</h6>
-                            <span>Web Designer</span>
+                            <h6>{{ Auth::user()->name }}</h6>
+                            <span>{{ Auth::user()->role }}</span>
                         </li>
                         <li>
                             <hr class="dropdown-divider">
@@ -121,6 +122,7 @@
 
                         <li>
                             <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard.show') }}">
                                 <i class="bi bi-person"></i>
                                 <span>My Profile</span>
                             </a>
@@ -130,7 +132,7 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+                            <a class="dropdown-item d-flex align-items-center" href="{{ route('dashboard.edit') }}">
                                 <i class="bi bi-gear"></i>
                                 <span>Account Settings</span>
                             </a>
@@ -140,7 +142,8 @@
                         </li>
 
                         <li>
-                            <a class="dropdown-item d-flex align-items-center" href="#">
+                            <a class="dropdown-item d-flex align-items-center" data-bs-toggle="modal"
+                                data-bs-target="#logoutModal">
                                 <i class="bi bi-box-arrow-right"></i>
                                 <span>Sign Out</span>
                             </a>
@@ -169,16 +172,19 @@
             </li>
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('setting.index') }}">
-                    <i class="bx bx-cog"></i>
+                    <i class='bx bx-cog'></i>
                     <span>Setting</span>
                 </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="{{ route('user.index') }}">
-                    <i class="bx bx-user-pin"></i>
-                    <span>User</span>
-                </a>
-            </li>
+
+            @if (Auth::user()->role == 'Superadmin')
+                <li class="nav-item">
+                    <a class="nav-link collapsed" href="{{ route('user.index') }}">
+                        <i class='bx bx-user-pin'></i>
+                        <span>User</span>
+                    </a>
+                </li>
+            @endif
 
             {{-- <li class="nav-item">
                 <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
@@ -228,20 +234,36 @@
             class="bi bi-arrow-up-short"></i></a>
 
     {{-- modal delete --}}
-    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <form action="" method="POST" id="form-delete">
                     @method('DELETE')
                     @csrf
                     <div class="modal-body">
-                        <a>Anda yakin ingin menghapus data?</a>
+                        <p>Anda yakin ingin menghapus data?</p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
-                        <button type="submit" class="btn btn-primary">Ya, Hapus data</button>
+                        <button type="submit" class="btn btn-primary">Ya, hapus data</button>
                     </div>
                 </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Logout-->
+    <div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <p>Anda yakin ingin logout?</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                    <a href="{{ route('login.logout') }}" type="button" class="btn btn-primary">Ya, Saya ingin
+                        logout</a>
+                </div>
             </div>
         </div>
     </div>
@@ -287,6 +309,7 @@
             theme: 'bootstrap-5',
             width: "100%",
         })
+
 
         let flashSuccess = "{{ session('success') ?? '' }}";
         if (flashSuccess) {
