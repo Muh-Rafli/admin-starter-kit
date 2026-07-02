@@ -164,10 +164,9 @@
                     <span>Dashboard</span>
                 </a>
             </li>
-
             <li class="nav-item">
                 <a class="nav-link collapsed" href="{{ route('user.index') }}">
-                    <i class='bx bx-user-pin'></i>
+                    <i class="bx bx-user-pin"></i>
                     <span>User</span>
                 </a>
             </li>
@@ -219,6 +218,25 @@
     <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
 
+    {{-- modal delete --}}
+    <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <form action="" method="POST" id="form-delete">
+                    @method('DELETE')
+                    @csrf
+                    <div class="modal-body">
+                        <a>Anda yakin ingin menghapus data?</a>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary">Ya, Hapus data</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     @stack('modals')
 
     <!-- add on -->
@@ -238,10 +256,6 @@
     <script src="{{ asset('niceadmin/js/main.js') }}"></script>
 
     <script>
-        new DataTable('#data-table', {
-            pageLength: 5,
-            lengthMenu: [5, 10, 25, 50, 100]
-        });
         new DataTable('#data-table');
 
         $('.form').parsley({
@@ -264,6 +278,26 @@
             theme: 'bootstrap-5',
             width: "100%",
         })
+
+        let flashSuccess = "{{ session('success') ?? '' }}";
+        if (flashSuccess) {
+            Swal.fire({
+                title: "MANTAP!",
+                text: flashSuccess,
+                icon: "success",
+                timer: 1500,
+                showConfirmButton: false,
+            });
+        }
+
+        let flashError = "{{ session('error') ?? '' }}";
+        if (flashError) {
+            Swal.fire({
+                icon: "error",
+                title: "Waduh...",
+                text: flashError,
+            });
+        }
     </script>
 
     @stack('scripts')

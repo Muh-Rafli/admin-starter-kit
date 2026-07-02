@@ -3,7 +3,7 @@
 
     <x-slot:title>{{ $title }}</x-slot:title>
 
-    <div class="card shadow p-3">
+    <div class="card shadow p-3">s
         <h5 class="fw-bold mb-0">{{ $title }}</h5>
     </div>
 
